@@ -1,0 +1,32 @@
+{
+  "name": "studio-storefront",
+  "description": "Talk to the OpsAgents Studio Shopify storefront — search the catalog, manage carts, and answer policy questions for studio.opsagents.agency. Wraps the live Shopify Storefront MCP at studio.opsagents.agency/api/mcp.",
+  "version": "1.0.0",
+  "author": "MSApps (https://msapps.mobi)",
+  "license": "MIT",
+  "keywords": [
+    "shopify",
+    "storefront",
+    "opsagents-studio",
+    "mcp",
+    "ucp",
+    "catalog",
+    "cart",
+    "sosa-agents"
+  ],
+  "homepage": "https://studio.opsagents.agency",
+  "platforms": ["claude-code", "cowork"],
+  "sosa": {
+    "compliant": true,
+    "level": 1,
+    "impact": "low",
+    "methodology": "https://github.com/MSApps-Mobile/claude-plugins/blob/main/docs/SOSA.md",
+    "pillars": {
+      "supervised": "All write actions (cart updates) require explicit user intent. The Storefront MCP itself is unauthenticated/public, so there is no admin surface here — it's the same data and capabilities a regular shopper has.",
+      "orchestrated": "SKILL.md mandates search-before-cart, surface_url-after-search, and never-pretend-checkout-completed.",
+      "secured": "No credentials. Public Shopify Storefront MCP endpoint. Single egress to studio.opsagents.agency only.",
+      "agents": "R=studio-storefront, T=storefront-mcp (5 tools), M=none (stateless), P=search → inspect → optionally cart → surface checkout URL"
+    }
+  },
+  "topics": ["sosa-agents", "ecommerce", "shopify"]
+}
